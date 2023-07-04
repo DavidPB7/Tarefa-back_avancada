@@ -3,7 +3,6 @@
 *{
     margin:0;
     padding: 0;
-
 }
 
 main {
@@ -31,4 +30,18 @@ input {
 
 main ul li {
     text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
+ul li img.deleteButton {
+    background-color: transparent;
+    border: none;
+    margin-left: 8px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+/* ul li img.deleteButton:hover {
+} */
