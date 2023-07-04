@@ -2,6 +2,8 @@ const ul = document.querySelector('ul')
 const input = document.querySelector('input')
 const form = document.querySelector('form')
 const li = document.createElement('li')
+const imgs = document.querySelectorAll('img')
+
 
 /*
 
@@ -20,13 +22,27 @@ load()
 */
 
 function addElement({ name, url }) {
-    li.innerHTML = `<li>${name} ${url}</li>`
+    const li = document.createElement('li') 
+    const img = document.createElement('img')
+    img.src = './img/deleteButton.svg';
+    img.classList.add("deleteButton")
+
+    img.addEventListener('click', () => {
+        if(confirm("Deseja apagar o link selecionado")) {
+            ul.removeChild(li);
+        }
+    })
+
+    li.innerHTML = `${name} ${url}`
+    li.appendChild(img)
     ul.appendChild(li);
 }
 
-function removeElement(element) {
-    // criem os códigos
-}
+// function removeElement(element) {
+//     ul.removeChild(li);
+//     alert('Tem certeza que quer remover o elemento?')
+// }
+
 
 form.addEventListener('submit', (event) => {
     
