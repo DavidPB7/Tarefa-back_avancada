@@ -1,8 +1,16 @@
 {
-    "urls": [
-      {
-        "name": "Web Academy",
-        "url": "http//webacademy.ufac.br"
-      }
-    ]
-  }
+  "urls": [
+    {
+      "name": "Web Academy",
+      "url": "http//webacademy.ufac.br"
+    },
+    {
+      "name": "twitter",
+      "url": "http://twitter.com/"
+    },
+    {
+      "name": "Ufac",
+      "url": "http://ufac.com.br/"
+    }
+  ]
+}

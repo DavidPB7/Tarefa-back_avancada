@@ -3,6 +3,7 @@
 *{
     margin:0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 main {
@@ -18,7 +19,7 @@ main {
 }
 
 body {
-    height: 93vh;
+    height: 100vh;
     font-family: 'Roboto Serif', serif;
 }
 
@@ -42,6 +43,3 @@ ul li img.deleteButton {
     margin-top: 5px;
     cursor: pointer;
 }
-
-/* ul li img.deleteButton:hover {
-} */

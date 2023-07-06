@@ -7,7 +7,11 @@ const path = require('path')
 http.createServer((req, res) => {
     const { name, url, del } = URL.parse(req.url, true).query
 
-    function writeFile(cb) {
+    res.writeHead(200, {
+        'Access-Control-Allow-Origin': '*'
+    })
+
+    function writeFile() {
         fs.writeFile(
             path.join(__dirname, 'urls.json'),
             JSON.stringify(data, null, 2),
