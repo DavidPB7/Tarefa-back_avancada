@@ -63,6 +63,4 @@ form.addEventListener('submit', (event) => {
     input.value = ''
 
     fetch(`http://localhost:3000/?name=${name}&url=${url}/`)
-
-
 })
