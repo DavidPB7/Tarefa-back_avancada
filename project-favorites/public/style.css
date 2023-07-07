@@ -35,3 +35,8 @@ main ul li {
     justify-content: center;
     gap: 20px;
 }
+
+main ul li span {
+    cursor: pointer;
+    color: red;
+}
