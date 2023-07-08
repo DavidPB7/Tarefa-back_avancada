@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 
 http.createServer((req, res) => {
-    const { name, url, del } = URL.parse(req.url, true).query
+    const { name, url, del, newUrl } = URL.parse(req.url, true).query
 
     res.writeHead(200, {
         'Access-Control-Allow-Origin': '*'
@@ -20,6 +20,12 @@ http.createServer((req, res) => {
                 res.end('Operação realizada com sucesso!')
             } 
         )
+    }
+
+    if(newUrl && !del) {
+        data.urls = data.urls.filter(item => item.url != url)
+        data.urls.push({ name, newUrl })
+        return writeFile(message => res.end(message))
     }
 
     if(!name || !url) {

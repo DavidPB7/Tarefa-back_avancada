@@ -11,6 +11,18 @@
     {
       "name": "Google",
       "url": "http://google.com/"
+    },
+    {
+      "name": "opa",
+      "url": "http:///"
+    },
+    {
+      "name": "opa",
+      "newUrl": " http://teste/"
+    },
+    {
+      "name": "opa",
+      "newUrl": " http://teste/"
     }
   ]
 }

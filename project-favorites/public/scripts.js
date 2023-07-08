@@ -3,7 +3,11 @@ const input = document.querySelector('input')
 const form = document.querySelector('form')
 const li = document.createElement('li')
 const imgs = document.querySelectorAll('img')
+const formEdit = document.querySelector('.editar')
+const inputEdit = document.querySelector('.editar input')
+const h1 = document.querySelector('h1')
 
+const oldUrl = '';
 
 // Função que carrega o conteúdo da API.
 async function load() {
@@ -20,8 +24,21 @@ load()
 function addElement({ name, url }) {
     const li = document.createElement('li') 
     const span = document.createElement('span')
+    const edit = document.createElement('span');
+
     span.innerHTML = "x";
     span.classList.add("deleteButton")
+    edit.innerHTML = "editar";
+    edit.classList.add("editButton");
+
+    edit.addEventListener('click', () => {
+        formEdit.style.display = "block";
+        inputEdit.value = `${name}, ${url}`
+        this.oldUrl = url;  
+        ul.style.display = "none";
+        form.style.display = "none";
+        h1.innerHTML = "Informe novos dados"
+    })
 
     span.addEventListener('click', () => {
         if(confirm("Deseja apagar o link selecionado")) {
@@ -33,6 +50,7 @@ function addElement({ name, url }) {
     li.innerHTML = `${name} ${url}`
     li.appendChild(span)
     ul.appendChild(li);
+    li.appendChild(edit);
 }
 
     // function removeElement(element) {
@@ -40,6 +58,16 @@ function addElement({ name, url }) {
     //     alert('Tem certeza que quer remover o elemento?')
     // }
 
+
+formEdit.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let { value } = inputEdit
+
+    const [name, url] = value.split(',')
+
+    fetch(`http://localhost:3000/?name=${name}&url=${oldUrl}&newUrl=${url}/`)
+})
 
 form.addEventListener('submit', (event) => {
     
