@@ -32,41 +32,50 @@ function addElement({ name, url }) {
     edit.classList.add("editButton");
 
     edit.addEventListener('click', () => {
-        formEdit.style.display = "block";
-        inputEdit.value = `${name}, ${url}`
-        this.oldUrl = url;  
-        ul.style.display = "none";
-        form.style.display = "none";
-        h1.innerHTML = "Informe novos dados"
+        hideLinks(name, url);
     })
 
     span.addEventListener('click', () => {
-        if(confirm("Deseja apagar o link selecionado")) {
-            fetch(`http://localhost:3000/?name=${name}&url=${url}&del=1/`)
-            ul.removeChild(li);
-        }
+        removeElement(name, url, li)
     })
 
-    li.innerHTML = `${name} ${url}`
+    li.innerHTML = `${name} - ${url}`
     li.appendChild(span)
     ul.appendChild(li);
     li.appendChild(edit);
 }
 
-    // function removeElement(element) {
-    //     ul.removeChild(li);
-    //     alert('Tem certeza que quer remover o elemento?')
-    // }
+async function removeElement(name, url, li) {
+    if(confirm("Deseja apagar o link selecionado")) {
+        await fetch(`http://localhost:3000/?name=${name}&url=${url}&del=1/`)
+        ul.removeChild(li);
+    }
+}
 
+
+function hideLinks(name, url) {
+    formEdit.style.display = "block";
+    inputEdit.value = `${name}, ${url}`
+    this.oldUrl = url;  
+    ul.style.display = "none";
+    form.style.display = "none";
+    h1.innerHTML = "Informe novos dados"
+}
+
+async function updateLink() {
+    const { value } = inputEdit
+
+    const [name, url] = value.split(',')
+
+    await fetch(`http://localhost:3000/?name=${name}&url=${this.oldUrl}&newUrl=${url}/`);
+
+    location.reload();
+}
 
 formEdit.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    let { value } = inputEdit
-
-    const [name, url] = value.split(',')
-
-    fetch(`http://localhost:3000/?name=${name}&url=${oldUrl}&newUrl=${url}/`)
+    updateLink();
 })
 
 form.addEventListener('submit', (event) => {

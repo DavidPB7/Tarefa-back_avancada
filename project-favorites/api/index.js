@@ -24,7 +24,7 @@ http.createServer((req, res) => {
 
     if(newUrl && !del) {
         data.urls = data.urls.filter(item => item.url != url)
-        data.urls.push({ name, newUrl })
+        data.urls.push({ name, url: newUrl })
         return writeFile(message => res.end(message))
     }
 
