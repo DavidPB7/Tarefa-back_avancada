@@ -9,27 +9,16 @@ const h1 = document.querySelector('h1')
 
 const oldUrl = '';
 
-// Função que carrega o conteúdo da API.
-async function load() {
-    // fetch está como await para evitar que entre num esquema de promisse e só devolva o conteúdo após a iteração qua acontece em seguida.
-    const res = await fetch('http://localhost:3000/')
-        .then(data => data.json())
-    // Iterando no vetor com o conteúdo (JSON) que está vindo da API e adicionando-os no frontend.
-    res.urls.map(({ name, url }) => addElement({ name, url }))
-}
-
-load()
-
-
 function addElement({ name, url }) {
     const li = document.createElement('li') 
+    const a = document.createElement('a')
     const span = document.createElement('span')
     const edit = document.createElement('span');
 
-    span.innerHTML = "x";
-    span.classList.add("deleteButton")
-    edit.innerHTML = "editar";
-    edit.classList.add("editButton");
+    span.innerHTML = "delete";
+    span.classList.add("deleteButton", "material-symbols-outlined")
+    edit.innerHTML = "edit";
+    edit.classList.add("editButton", "material-symbols-outlined");
 
     edit.addEventListener('click', () => {
         hideLinks(name, url);
@@ -39,10 +28,11 @@ function addElement({ name, url }) {
         removeElement(name, url, li)
     })
 
-    li.innerHTML = `${name} - ${url}`
-    li.appendChild(span)
+    a.innerHTML = `${name} - ${url}`
     ul.appendChild(li);
+    li.appendChild(a);
     li.appendChild(edit);
+    li.appendChild(span)
 }
 
 async function removeElement(name, url, li) {
@@ -67,7 +57,7 @@ async function updateLink() {
 
     const [name, url] = value.split(',')
 
-    await fetch(`http://localhost:3000/?name=${name}&url=${this.oldUrl}&newUrl=${url}/`);
+    await fetch(`http://localhost:3000/?name=${name}&url=${this.oldUrl}&newUrl=${url}`);
 
     location.reload();
 }
@@ -101,3 +91,14 @@ form.addEventListener('submit', (event) => {
 
     fetch(`http://localhost:3000/?name=${name}&url=${url}/`)
 })
+
+// Função que carrega o conteúdo da API.
+async function load() {
+    // fetch está como await para evitar que entre num esquema de promisse e só devolva o conteúdo após a iteração qua acontece em seguida.
+    const res = await fetch('http://localhost:3000/')
+        .then(data => data.json())
+    // Iterando no vetor com o conteúdo (JSON) que está vindo da API e adicionando-os no frontend.
+    res.urls.map(({ name, url }) => addElement({ name, url }))
+}
+
+load()

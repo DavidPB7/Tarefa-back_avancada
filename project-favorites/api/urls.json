@@ -1,12 +1,12 @@
 {
   "urls": [
     {
-      "name": "Web Academy",
-      "url": "  http//webacademy/"
-    },
-    {
       "name": "Google",
       "url": "http://google.com/"
+    },
+    {
+      "name": "Web Academy",
+      "url": "  http//webacademy.com/"
     }
   ]
 }

@@ -15,7 +15,7 @@ main {
     gap: 20px;
     background-color: rgb(59, 59, 133);
     height: 100%;
-    color: rgb(207, 151, 38);
+    color: #fff;
 }
 
 body {
@@ -33,7 +33,7 @@ main ul li {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 5px;
 }
 
 main ul li span {
@@ -42,8 +42,7 @@ main ul li span {
 }
 
 .editButton {
-    color: rgb(255, 255, 255);
-    text-decoration: underline;
+    color: rgb(40, 211, 91);
     cursor: pointer;
 }
 
