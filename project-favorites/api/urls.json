@@ -1,12 +1,16 @@
 {
   "urls": [
     {
-      "name": "Google",
-      "url": "http://google.com/"
+      "name": "Web Academy",
+      "url": "http//webacademy.com/"
     },
     {
-      "name": "Web Academy",
-      "url": "  http//webacademy.com/"
+      "name": "Google",
+      "url": "http://google.com.br/"
+    },
+    {
+      "name": "Globo",
+      "url": "http://globo.com/"
     }
   ]
 }

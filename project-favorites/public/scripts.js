@@ -28,7 +28,9 @@ function addElement({ name, url }) {
         removeElement(name, url, li)
     })
 
-    a.innerHTML = `${name} - ${url}`
+    a.innerHTML = name
+    a.href = url
+    a.target = "_blank"
     ul.appendChild(li);
     li.appendChild(a);
     li.appendChild(edit);

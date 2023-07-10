@@ -36,6 +36,14 @@ main ul li {
     gap: 5px;
 }
 
+main ul li a {
+    color: #fff;
+}
+
+main ul li a:hover {
+    color: #ffffffaf;
+}
+
 main ul li span {
     cursor: pointer;
     color: red;
@@ -43,7 +51,6 @@ main ul li span {
 
 .editButton {
     color: rgb(40, 211, 91);
-    cursor: pointer;
 }
 
 .editar {
