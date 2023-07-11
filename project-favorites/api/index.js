@@ -1,44 +1,29 @@
-const http = require('http')
-const data = require('./urls.json')
-const URL = require('url')
-const fs = require('fs')
-const path = require('path')
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
 
-http.createServer((req, res) => {
-    const { name, url, del, newUrl } = URL.parse(req.url, true).query
+const linkRoutes = require('./routes/linkRoutes');
 
-    res.writeHead(200, {
-        'Access-Control-Allow-Origin': '*'
+app.use(express.json());
+app.use(cors());
+app.use('/link', linkRoutes);
+
+app.use(
+    express.urlencoded({
+        extended: true,
     })
-
-    function writeFile() {
-        fs.writeFile(
-            path.join(__dirname, 'urls.json'),
-            JSON.stringify(data, null, 2),
-            err => {
-                if (err) throw err
-                res.end('Operação realizada com sucesso!')
-            } 
-        )
-    }
-
-    if(newUrl && !del) {
-        data.urls = data.urls.filter(item => item.url != url)
-        data.urls.push({ name, url: newUrl })
-        return writeFile(message => res.end(message))
-    }
-
-    if(!name || !url) {
-        return res.end(JSON.stringify(data))
-    }
-
-    if(del) {
-        data.urls = data.urls.filter(item => item.url != url)
-        return writeFile(message => res.end(message))
-    }
-
-    data.urls.push({ name, url })
-    return writeFile(message => res.end(message))
+);
 
 
-}).listen(3000)
+app.get('/', (req, res) => {
+
+    res.json({message: 'Oi express'});
+});
+
+mongoose.connect('mongodb://0.0.0.0:27017/APINode')
+.then(() => {
+    console.log('MongoDB conectado')
+    app.listen(3000);
+})
+.catch((err) => console.log(err));
