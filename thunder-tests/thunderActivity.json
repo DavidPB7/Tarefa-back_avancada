@@ -1,0 +1,21 @@
+[
+    {
+        "_id": "ee60e0bd-fdb7-4dce-8048-331d19b8a876",
+        "colId": "history",
+        "containerId": "",
+        "name": "http://localhost:3000/link",
+        "url": "http://localhost:3000/link",
+        "method": "POST",
+        "sortNum": 0,
+        "created": "2023-07-12T20:21:24.174Z",
+        "modified": "2023-07-12T20:22:11.737Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"name\": \"opa\",\n  \"url\": \"http://www.globo.com\"\n}",
+            "form": []
+        },
+        "tests": []
+    }
+]

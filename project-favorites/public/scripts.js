@@ -7,36 +7,41 @@ const formEdit = document.querySelector('.editar')
 const inputEdit = document.querySelector('.editar input')
 const h1 = document.querySelector('h1')
 
-const oldUrl = '';
 
-// // Função que carrega o conteúdo da API.
-// async function load() {
-//     // fetch está como await para evitar que entre num esquema de promisse e só devolva o conteúdo após a iteração qua acontece em seguida.
-//     const res = await fetch('http://localhost:3000/link/')
-//         .then(data => data.json())
-//     // Iterando no vetor com o conteúdo (JSON) que está vindo da API e adicionando-os no frontend.
-//     res.urls.map(({ name, url }) => addElement({ name, url }))
-// }
+// Função que carrega o conteúdo da API.
+async function load() {
+    try {
+        const response = await fetch('http://localhost:3000/link/');
+        const data = await response.json();
 
-// load()
+        data.forEach(({_id, name, url }) => addElement({_id, name, url}))
+    } catch (error) {
+        console.error("Ocorreu um erro:", error)
+    }
+}
 
-function addElement({ name, url }) {
+load()
+
+function addElement({_id, name, url}) {
     const li = document.createElement('li') 
     const a = document.createElement('a')
+    const input = document.createElement('input')
     const span = document.createElement('span')
     const edit = document.createElement('span');
 
+    input.type = 'hidden';
+    input.value = _id
     span.innerHTML = "delete";
     span.classList.add("deleteButton", "material-symbols-outlined")
     edit.innerHTML = "edit";
     edit.classList.add("editButton", "material-symbols-outlined");
 
     edit.addEventListener('click', () => {
-        hideLinks(name, url);
+        hideLinks(name, url, _id);
     })
 
     span.addEventListener('click', () => {
-        removeElement(name, url, li)
+        removeElement(name, url, li, _id)
     })
 
     a.innerHTML = name
@@ -46,17 +51,25 @@ function addElement({ name, url }) {
     li.appendChild(a);
     li.appendChild(edit);
     li.appendChild(span)
+    li.appendChild(input)
 }
 
-async function removeElement(name, url, li) {
+async function removeElement(name, url, li, _id) {
     if(confirm("Deseja apagar o link selecionado")) {
-        await fetch(`http://localhost:3000/?name=${name}&url=${url}&del=1/`)
+        await fetch(`http://localhost:3000/link/${_id}`, {
+            method:'DELETE'
+        })
         ul.removeChild(li);
     }
 }
 
 
-function hideLinks(name, url) {
+function hideLinks(name, url, _id) {
+    const input = document.createElement('input')
+    input.type = 'hidden';
+    input.value = _id
+    formEdit.appendChild(input)
+
     formEdit.style.display = "block";
     inputEdit.value = `${name}, ${url}`
     this.oldUrl = url;  
@@ -66,11 +79,19 @@ function hideLinks(name, url) {
 }
 
 async function updateLink() {
+    const inputId = document.querySelector('form input[type="hidden"]')
+    const id = inputId.value
     const { value } = inputEdit
 
     const [name, url] = value.split(',')
 
-    await fetch(`http://localhost:3000/?name=${name}&url=${this.oldUrl}&newUrl=${url}`);
+    await fetch(`http://localhost:3000/link/${id}`, {
+        method:'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, url})
+    })
 
     location.reload();
 }
@@ -102,5 +123,13 @@ form.addEventListener('submit', (event) => {
 
     input.value = ''
 
-    fetch(`http://localhost:3000/?name=${name}&url=${url}/`)
+    fetch(`http://localhost:3000/link`, {
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({name, url})
+    })
+
+    
 })

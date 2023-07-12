@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Link = mongoose.model('Link', {
-    title: String,
+    name: String,
     url: String,
 });
 

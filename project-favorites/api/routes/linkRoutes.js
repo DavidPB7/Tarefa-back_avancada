@@ -30,9 +30,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    const { title, url } = req.body;
+    const { name, url } = req.body;
 
-    if(!title) {
+    if(!name) {
         res.status(422).json({error: 'O título do link é obrigatório'});
         return;
     }
@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     }
 
     const link = {
-        title,
+        name,
         url 
     };
 
@@ -59,9 +59,9 @@ router.post('/', async (req, res) => {
 
 router.patch('/:id', async (req, res) => {
     const id = req.params.id;
-    const { title, url } = req.body;
+    const { name, url } = req.body;
     const link = {
-        title,
+        name,
         url 
     };
 
