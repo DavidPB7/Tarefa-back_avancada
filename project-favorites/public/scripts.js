@@ -1,9 +1,9 @@
-const ul = document.querySelector('ul')
+const ul = document.querySelector('.grid main ul')
 const input = document.querySelector('input')
-const form = document.querySelector('form')
+const addLinkForm = document.querySelector('.input-link form')
 const li = document.createElement('li')
 const imgs = document.querySelectorAll('img')
-const formEdit = document.querySelector('.editar')
+const formEdit = document.querySelector('.editLink')
 const inputEdit = document.querySelector('.editar input')
 const h1 = document.querySelector('h1')
 
@@ -23,35 +23,45 @@ async function load() {
 load()
 
 function addElement({_id, name, url}) {
-    const li = document.createElement('li') 
-    const a = document.createElement('a')
-    const input = document.createElement('input')
-    const span = document.createElement('span')
-    const edit = document.createElement('span');
+    // Cria elementos html
+    const li = document.createElement('li')
+    const link = document.createElement('a')
+    const div = document.createElement('div')
+    const spanEditLink = document.createElement('span')
+    const spanDeleteLink = document.createElement('span')
+    const inputHiddenId = document.createElement('input')
 
-    input.type = 'hidden';
-    input.value = _id
-    span.innerHTML = "delete";
-    span.classList.add("deleteButton", "material-symbols-outlined")
-    edit.innerHTML = "edit";
-    edit.classList.add("editButton", "material-symbols-outlined");
+    // Insere classes necessárias nos elementos
+    link.classList.add("link-name")
+    div.classList.add("acoes");
+    spanEditLink.classList.add("editButton", "material-symbols-outlined")
+    spanDeleteLink.classList.add("deleteButton", "material-symbols-outlined")
 
-    edit.addEventListener('click', () => {
+    spanEditLink.innerHTML = "edit"
+    spanDeleteLink.innerHTML = "delete"
+
+    inputHiddenId.type = 'hidden';
+    inputHiddenId.value = _id
+
+    link.innerHTML = name
+    link.href = url
+    link.target = "_blank"
+
+    spanEditLink.addEventListener('click', () => {
         hideLinks(name, url, _id);
     })
 
-    span.addEventListener('click', () => {
+    spanDeleteLink.addEventListener('click', () => {
         removeElement(name, url, li, _id)
     })
 
-    a.innerHTML = name
-    a.href = url
-    a.target = "_blank"
-    ul.appendChild(li);
-    li.appendChild(a);
-    li.appendChild(edit);
-    li.appendChild(span)
-    li.appendChild(input)
+    // Adiciona elementos na interface
+    ul.appendChild(li)
+    li.appendChild(link)
+    li.appendChild(div)
+    div.appendChild(spanEditLink)
+    div.appendChild(spanDeleteLink)
+    li.appendChild(inputHiddenId)
 }
 
 async function removeElement(name, url, li, _id) {
@@ -74,7 +84,7 @@ function hideLinks(name, url, _id) {
     inputEdit.value = `${name}, ${url}`
     this.oldUrl = url;  
     ul.style.display = "none";
-    form.style.display = "none";
+    addLinkForm.style.display = "none";
     h1.innerHTML = "Informe novos dados"
 }
 
@@ -102,7 +112,7 @@ formEdit.addEventListener('submit', (event) => {
     updateLink();
 })
 
-form.addEventListener('submit', (event) => {
+addLinkForm.addEventListener('submit', (event) => {
     
     event.preventDefault();
 

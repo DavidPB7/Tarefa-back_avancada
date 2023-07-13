@@ -7,14 +7,14 @@
 }
 
 body {
-    height: 100vh;
     font-family: 'Roboto Serif', serif;
     background-color: #0099ff;
 }
 
 .grid {
+    height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 1fr 1fr 1fr 1fr;
 }
 
 .grid header {
@@ -27,7 +27,7 @@ body {
 .grid header ul {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     padding: 10px;
 }
 
@@ -42,57 +42,73 @@ body {
 }
 
 .grid .input-link {
-    margin: 0 auto;
-    margin-top: 10px;
+    margin: auto;
 }
 
 .grid .input-link form input {
-    width: 300px;
+    position: relative;
+    width: 250px;
     padding: 7px;
-    border-radius: 5px;
     font-family: inherit;
     outline: none;
     font-size: 12px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.grid .input-link form button {
+    position: absolute;
+    background-color: #61E786;
+    border: none;
+    width: 30px;
+    height: 29px;
+    font-size: 1rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .grid main {
-    margin-left: 60px;
-    margin-right: 60px;
-    /* padding: 10px; */
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
     border-radius: 5px;
     background-color: #fff;
+    font-size: 0.9rem;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
-
-
 
 .grid main ul li {
     display: flex;
+    gap: 10px;
     justify-content: space-between;
+    align-items: center;
     list-style: none;
-    border-bottom: 1px solid #000;
+}
+
+.grid main ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.grid main ul li:not(.grid main ul li:first-child) {
+    margin-top: 10px;
+}
+
+.grid main ul li .acoes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .editButton {
-    color: rgb(31, 152, 31);
+    color: #61E786;
 }
 
-/* main ul li a {
-    color: #fff;
+.deleteButton {
+    color: #D63230;
 }
 
-main ul li a:hover {
-    color: #ffffffaf;
-}
-
-main ul li span {
-    cursor: pointer;
-    color: red;
-}
-
-.editButton {
-    color: rgb(40, 211, 91);
-}
-
-.editar {
+.editLink {
     display: none;
-} */
+}
