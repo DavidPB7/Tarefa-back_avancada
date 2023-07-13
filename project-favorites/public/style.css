@@ -6,37 +6,77 @@
     box-sizing: border-box;
 }
 
-main {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding-top: 50px;
-    gap: 20px;
-    background-color: rgb(59, 59, 133);
-    height: 100%;
-    color: #fff;
-}
-
 body {
     height: 100vh;
     font-family: 'Roboto Serif', serif;
+    background-color: #0099ff;
 }
 
-input {
-    width: 300px;
-    padding: 5px;
-    border-radius: 4px;
+.grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-main ul li {
+.grid header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    align-items: center;
 }
 
-main ul li a {
+.grid header ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.grid header ul li {
+    list-style: none;
+    font-weight: bold;
+}
+
+.grid header nav {
+    width: 100%;
+    background-color: #fff;
+}
+
+.grid .input-link {
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.grid .input-link form input {
+    width: 300px;
+    padding: 7px;
+    border-radius: 5px;
+    font-family: inherit;
+    outline: none;
+    font-size: 12px;
+}
+
+.grid main {
+    margin-left: 60px;
+    margin-right: 60px;
+    /* padding: 10px; */
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+
+
+.grid main ul li {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    border-bottom: 1px solid #000;
+}
+
+.editButton {
+    color: rgb(31, 152, 31);
+}
+
+/* main ul li a {
     color: #fff;
 }
 
@@ -55,4 +95,4 @@ main ul li span {
 
 .editar {
     display: none;
-}
+} */
