@@ -6,6 +6,8 @@ const imgs = document.querySelectorAll('img')
 const formEdit = document.querySelector('.editLink')
 const inputEdit = document.querySelector('.editar input')
 const h1 = document.querySelector('h1')
+const menuMobile = document.querySelector('.menu-toggle')
+const nav = document.querySelector('#nav-main')
 
 
 // Função que carrega o conteúdo da API.
@@ -34,8 +36,8 @@ function addElement({_id, name, url}) {
     // Insere classes necessárias nos elementos
     link.classList.add("link-name")
     div.classList.add("acoes");
-    spanEditLink.classList.add("editButton", "material-symbols-outlined")
-    spanDeleteLink.classList.add("deleteButton", "material-symbols-outlined")
+    spanEditLink.classList.add( "material-symbols-outlined", "editButton")
+    spanDeleteLink.classList.add( "material-symbols-outlined", "deleteButton")
 
     spanEditLink.innerHTML = "edit"
     spanDeleteLink.innerHTML = "delete"
@@ -59,7 +61,7 @@ function addElement({_id, name, url}) {
     ul.appendChild(li)
     li.appendChild(link)
     li.appendChild(div)
-    div.appendChild(spanEditLink)
+    div.appendChild(spanEditLink) 
     div.appendChild(spanDeleteLink)
     li.appendChild(inputHiddenId)
 }
@@ -141,5 +143,8 @@ addLinkForm.addEventListener('submit', (event) => {
         body: JSON.stringify({name, url})
     })
 
-    
+})
+
+menuMobile.addEventListener('click', () => {
+    nav.style.display = nav.style.display === 'block' ? 'none' : 'block'
 })

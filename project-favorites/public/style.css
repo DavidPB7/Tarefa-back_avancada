@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap');
 
-*{
+* {
     margin:0;
     padding: 0;
     box-sizing: border-box;
@@ -14,35 +14,63 @@ body {
 .grid {
     height: 100vh;
     display: grid;
-    grid-template-rows: 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
-}
-
-.grid header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    grid-template-rows: max-content max-content 1fr 1fr 1fr;
     align-items: center;
 }
 
-.grid header ul {
+.grid header {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.grid header img {
+    margin: 0 auto;
+}
+
+.grid header button {
+    background-color: transparent;
+    border: none;
+}
+
+.grid header nav ul {
     display: flex;
     justify-content: center;
     gap: 40px;
     padding: 10px;
 }
 
-.grid header ul li {
+.grid header nav ul li {
     list-style: none;
     font-weight: bold;
 }
 
 .grid header nav {
+    display: none;
     width: 100%;
     background-color: #fff;
+    grid-column: 1 / -1;
+    animation-duration: 0.7s;
+    animation-name: navAnimation;
 }
 
-.grid .input-link {
+@keyframes navAnimation {
+    from {
+        opacity: 0;
+        margin-left: -10px;
+    }
+
+    to {
+        opacity: 1;
+        margin-left: 0;
+    }
+}
+
+.grid .input-link{
     margin: auto;
+    padding: 0.8rem 0px 0.8rem 0px;
 }
 
 .grid .input-link form input {
@@ -55,6 +83,7 @@ body {
     border: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .grid .input-link form button {
@@ -66,6 +95,7 @@ body {
     font-size: 1rem;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .grid main {
@@ -111,4 +141,57 @@ body {
 
 .editLink {
     display: none;
+}
+
+.text {
+    margin: 0 auto;
+    width: 80%;
+    font-weight: 600;
+}
+
+footer {
+    background-color: #fff;
+    align-self: flex-end;
+    font-size: 0.8rem;
+    padding: 10px;
+}
+
+footer .creators {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+}
+
+footer .creators .first-creator, .second-creator {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+footer .creators .second-creator {
+    grid-column: 2;
+}
+
+footer .copyright {
+    text-align: center;
+}
+
+@media (min-width: 481px) {
+    .menu-toggle {
+        display: none;
+    }
+
+    .grid header nav {
+        display: flex;
+        background-color: #0099ff;
+        font-size: 1rem;
+    }
+
+    .grid header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+
 }
