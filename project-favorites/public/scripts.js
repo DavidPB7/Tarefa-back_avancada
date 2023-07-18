@@ -129,7 +129,7 @@ addLinkForm.addEventListener('submit', (event) => {
   input.value = '';
 
   fetch('http://localhost:3000/link', {
-    method: 'POST',
+    method: 'POST', 
     headers: {
       'Content-Type': 'application/json',
     },

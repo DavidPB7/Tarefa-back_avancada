@@ -253,6 +253,34 @@ footer .copyright {
         font-size: 1.1rem;
     }
 
+    .grid header nav ul li {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .grid header nav ul li::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0px;
+        transition: 0.3s;
+        position: absolute;
+        background-color: currentColor;
+        bottom: -1px;
+    }
+
+    .grid header nav ul li:hover:after {
+        width: 100%;
+    }
+
+    .grid main ul li a, .acoes span {
+        transition: 0.3s;
+    }
+
+    .grid main ul li a:hover, .acoes span:hover {
+        transform: scale(1.07);
+    }
+
     .grid .links {
         grid-template-rows: 1fr;
         grid-template-columns: 1fr 1fr 1fr;
