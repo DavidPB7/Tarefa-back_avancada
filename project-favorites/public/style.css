@@ -45,7 +45,7 @@ body {
 
 .grid header nav ul li {
     list-style: none;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .grid header nav {
@@ -132,6 +132,14 @@ body {
     gap: 5px;
 }
 
+.grid main ul li .inputEdit {
+    outline: none;
+    border: 1px solid #333;
+    padding: 3px;
+    border-radius: 5px;
+    font-family: inherit;
+}
+
 .editButton {
     color: #61E786;
 }
@@ -148,9 +156,10 @@ body {
     margin: 0 auto;
     width: 80%;
     font-weight: 600;
+    padding: 25px 0;
 }
 
-.links .video, .add {
+.links .video, .ad {
     display: none;
 }
 
@@ -204,10 +213,17 @@ footer .copyright {
         width: 400px;
     }
 
+    .grid main ul li .inputEdit {
+        width: 300px;
+    }
+
     .grid .links {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr max-content;
+        align-items: center;
+        row-gap: 40px;
+        column-gap: 40px;
     }
 
     .grid .links p {
@@ -216,15 +232,16 @@ footer .copyright {
 
     .grid .links .ad {
         grid-row: 2;
-        grid-column: 2;
     }
 
-    .grid .links .video {
-        grid-column: 2;
-        grid-row: 1;
+    .grid .links .ad img {
+        height: 100%;
+        width: 200px;
     }
+    
     .grid .links .video, .grid .links .ad {
         display: block;
+        margin: 0 auto;
     } 
 
 }
