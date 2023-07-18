@@ -142,10 +142,12 @@ body {
 
 .editButton {
     color: #61E786;
+    cursor: pointer;
 }
 
 .deleteButton {
     color: #D63230;
+    cursor: pointer;
 }
 
 .editLink {
@@ -243,5 +245,34 @@ footer .copyright {
         display: block;
         margin: 0 auto;
     } 
+}
+
+
+@media (min-width: 769px) {
+    .grid header nav {
+        font-size: 1.1rem;
+    }
+
+    .grid .links {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .grid .links p {
+        grid-row: 1 / -1;
+    }
+
+    .grid .links .ad {
+        grid-row: 1;
+    }
+
+    .grid .input-link form input {
+        width: 500px;
+    }
+
+    .grid .links .ad img {
+        height: 100%;
+        width: 250px;
+    }
 
 }

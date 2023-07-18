@@ -8,7 +8,7 @@ http.createServer((req,res)=>{
     const pathFile = path.join(__dirname,'public',file)
 
     const extname = path.extname(pathFile)
-    const allowedFileTypes = ['.html','.css','.js']
+    const allowedFileTypes = ['.html','.css','.js', '.svg']
     const allowed = allowedFileTypes.find(item => item == extname)
     if(!allowed) return
 
